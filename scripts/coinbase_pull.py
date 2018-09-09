@@ -13,7 +13,7 @@ coinbase_api_version = os.environ['COINBASE_API_VERSION']
 cb_client = Client(coinbase_key_id, coinbase_secret_key, api_version=coinbase_api_version)
 
 # Open output file connection
-ofile_root_dirname = '/home/ec2-user'
+ofile_root_dirname = '/home/ec2-user/'
 ofile_app_location = 'crypto/data/'
 ofile_name = 'platypus_coinbase_pull_{}.json'.format(datetime.now().strftime("%Y%m%d%H%M%S"))
 ofile_absolute_path = ofile_root_dirname + ofile_app_location + ofile_name
