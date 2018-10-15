@@ -23,7 +23,7 @@ ofile_absolute_path = ofile_root_dirname + ofile_app_location + ofile_name
 ofile = open(ofile_absolute_path, "w+")
 
 # Using the coinbase connection object, get the historical prices
-ofile.write(json.dumps(cb_client.get_historic_prices(currency = 'USD', period = 'all')))
+ofile.write(json.dumps(cb_client.get_historic_prices(currency = 'USD', period = 'day')))
 
 # Close output file connection
 ofile.close()
