@@ -34,30 +34,30 @@ s3 = boto3.resource('s3')
 s3.meta.client.upload_file(ofile_absolute_path, bucket_name, ofile_name)
 
 # Redshift connection credentials
-redshift_host = os.environ['REDSHIFT_HOST']
-redshift_db_name = os.environ['REDSHIFT_DB_NAME']
-redshift_port = os.environ['REDSHIFT_PORT']
-redshift_user = os.environ['REDSHIFT_USER']
-redshift_password = os.environ['REDSHIFT_PASSWORD']
+# redshift_host = os.environ['REDSHIFT_HOST']
+# redshift_db_name = os.environ['REDSHIFT_DB_NAME']
+# redshift_port = os.environ['REDSHIFT_PORT']
+# redshift_user = os.environ['REDSHIFT_USER']
+# redshift_password = os.environ['REDSHIFT_PASSWORD']
 
 # Open Redshift Connection
-conn = psycopg2.connect(host=redshift_host, dbname=redshift_db_name, port=redshift_port, user=redshift_user, password=redshift_password)
-cursor = conn.cursor()
+# conn = psycopg2.connect(host=redshift_host, dbname=redshift_db_name, port=redshift_port, user=redshift_user, password=redshift_password)
+# cursor = conn.cursor()
 
 # Open JSON, Parse and Load
-with open(ofile_absolute_path) as f:
-    data = json.load(f)
-    prices = data['prices']
-    values = []
-    for price_element in prices:
-        price = price_element['price']
-        time = datetime.strptime(price_element['time'], '%Y-%m-%dT%H:%M:%SZ')
-        values.append((price, time))
-    psycopg2.extras.execute_values(cursor, "INSERT INTO prices (price, time) VALUES %s", values)
-conn.commit()
+# with open(ofile_absolute_path) as f:
+#    data = json.load(f)
+#    prices = data['prices']
+#    values = []
+#    for price_element in prices:
+#        price = price_element['price']
+#        time = datetime.strptime(price_element['time'], '%Y-%m-%dT%H:%M:%SZ')
+#        values.append((price, time))
+#    psycopg2.extras.execute_values(cursor, "INSERT INTO prices (price, time) VALUES %s", values)
+#conn.commit()
 
 # Close Redshift Connection
-conn.close()
+# conn.close()
 
 # Remove local file
 os.remove(ofile_absolute_path)
